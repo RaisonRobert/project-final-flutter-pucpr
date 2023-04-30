@@ -46,6 +46,7 @@ class ListPedidos extends StatelessWidget {
                                     TextButton(
                                       child: const Text('ok'),
                                       onPressed: () {
+                                        // onRemoveAllList();
                                         listOrder.remove(item);
                                         setSaveSharePreferences(listOrder);
                                         Navigator.of(context).pop();
