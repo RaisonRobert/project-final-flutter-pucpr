@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_final_de_flutter/SharePreferencesFunction.dart';
-
+import 'SharePreferencesFunction.dart';
 import 'HomePage.dart';
 
 class ListPet extends StatelessWidget {

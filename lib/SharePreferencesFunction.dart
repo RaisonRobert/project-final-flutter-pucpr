@@ -22,11 +22,9 @@ getListOrdersSharePreferences() async {
   } else {
     listOrder = [];
   }
-  print("LISTA DE ITEMS: $listOrder");
 }
 
 onRemoveAllList() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-
   prefs.clear();
 }

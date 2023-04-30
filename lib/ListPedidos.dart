@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_final_de_flutter/SharePreferencesFunction.dart';
-
+import 'SharePreferencesFunction.dart';
 import 'HomePage.dart';
 
 class ListPedidos extends StatelessWidget {
@@ -46,7 +45,6 @@ class ListPedidos extends StatelessWidget {
                                     TextButton(
                                       child: const Text('ok'),
                                       onPressed: () {
-                                        // onRemoveAllList();
                                         listOrder.remove(item);
                                         setSaveSharePreferences(listOrder);
                                         Navigator.of(context).pop();
