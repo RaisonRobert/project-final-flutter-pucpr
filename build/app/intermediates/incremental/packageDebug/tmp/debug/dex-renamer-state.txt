@@ -1,0 +1,4 @@
+#Sat Apr 29 20:35:51 AMT 2023
+base.0=/Users/samelan/Documents/Raison-Robert/Flutter-Raison/projeto_final_de_flutter/project-final-flutter-pucpr/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

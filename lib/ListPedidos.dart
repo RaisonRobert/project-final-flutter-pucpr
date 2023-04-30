@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final_de_flutter/SharePreferencesFunction.dart';
+
 import 'HomePage.dart';
 
 class ListPedidos extends StatelessWidget {
   ListPedidos(List<String> listOrders);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -14,36 +14,66 @@ class ListPedidos extends StatelessWidget {
           title: Text('Acompanhar meu pedido'),
         ),
         body: ListView(
-          children:<Widget>[
-            for (var item in listOrders) _buildCardCenter(context, item, onTap: (){
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  // retorna um objeto do tipo Dialog
-                  return AlertDialog(
-                    title:  Text("Atenção"),
-                    content:  Text("Entraremos em contato, aguarde a entrega"),
-                    actions: <Widget>[
-                      // define os botões na base do dialogo
-                      TextButton(
-                        child: const Text('ok'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            }),
+          children: <Widget>[
+            for (var item in listOrder)
+              _buildCardCenter(context, item, onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    // retorna um objeto do tipo Dialog
+                    return AlertDialog(
+                      title: Text("Atenção"),
+                      content: Text("Deseja Remover?"),
+                      actions: <Widget>[
+                        // define os botões na base do dialogo
+                        TextButton(
+                          child: const Text('não'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        TextButton(
+                          child: const Text('sim'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Excluido com sucesso"),
+                                  content: Text("Dog: '${item}' "),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: const Text('ok'),
+                                      onPressed: () {
+                                        listOrder.remove(item);
+                                        setSaveSharePreferences(listOrder);
+                                        Navigator.of(context).pop();
+                                        Navigator.pop(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return HomePage();
+                                        }));
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
           ],
-        )
-    );
-
+        ));
   }
 
-  Center _buildCardCenter(BuildContext context, String title, {required Null Function() onTap}) {
-    return  Center(
+  Center _buildCardCenter(BuildContext context, String title,
+      {required Null Function() onTap}) {
+    return Center(
       child: InkWell(
           child: Card(
             color: colorPrimary,
@@ -53,17 +83,12 @@ class ListPedidos extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(
-                      title,
-                      style: styleFont
-                  ),
+                  Text(title, style: styleFont),
                 ],
               ),
             ),
           ),
-          onTap: () => onTap()
-      ),
+          onTap: () => onTap()),
     );
   }
-
 }

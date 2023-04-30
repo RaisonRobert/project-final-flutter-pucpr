@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final_de_flutter/SharePreferencesFunction.dart';
 
 import 'HomePage.dart';
 
 class ListPet extends StatelessWidget {
-  ListPet(List<String> listDogs);
+  ListPet(List<String>? listDogs);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ListPet extends StatelessWidget {
         ),
         body: ListView(
           children: <Widget>[
-            for (var item in listDogs)
+            for (var item in listDog!)
               _buildCardCenter(context, item, onTap: () {
                 showDialog(
                   context: context,
@@ -45,7 +46,8 @@ class ListPet extends StatelessWidget {
                                     TextButton(
                                       child: const Text('ok'),
                                       onPressed: () {
-                                        listOrders.add(item);
+                                        listOrder.add(item);
+                                        setSaveSharePreferences(listOrder);
                                         Navigator.of(context).pop();
                                         Navigator.pop(context,
                                             MaterialPageRoute(
